@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFD93D">
+<title>Dompetku</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%23FFD93D%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2718%27 text-anchor=%27middle%27%3E%F0%9F%92%B0%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&display=block">
+<script>
+  // Tema diterapkan sebelum render agar tidak berkedip
+  try {
+    var t = localStorage.getItem('dk_tema');
+    if (!t) t = (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="gate" hidden></div>
+
+<div id="app" hidden>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"><span class="ms fill">account_balance_wallet</span></div>
+      <div><b>Dompetku</b><small id="subtitle">Beranda</small></div>
+    </div>
+    <div class="top-r">
+      <button class="sync" id="sync" type="button" aria-live="polite" title="Status sinkronisasi"><span class="ms">cloud_done</span><span id="syncTxt">Tersimpan</span></button>
+      <div class="avatar" id="meAv" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="view on" id="v-beranda" aria-label="Beranda"></section>
+    <section class="view" id="v-riwayat" aria-label="Riwayat transaksi"></section>
+    <section class="view" id="v-tambah" aria-label="Tambah transaksi"></section>
+    <section class="view" id="v-ringkasan" aria-label="Ringkasan dan grafik"></section>
+    <section class="view" id="v-pengaturan" aria-label="Pengaturan"></section>
+  </main>
+
+  <nav class="nav" id="nav" aria-label="Menu utama">
+    <div class="in">
+      <a href="javascript:void(0)" data-go="beranda" class="on" aria-current="page"><span class="ms">home</span>Beranda</a>
+      <a href="javascript:void(0)" data-go="riwayat"><span class="ms">receipt_long</span>Riwayat</a>
+      <a href="javascript:void(0)" class="fab" data-go="tambah" aria-label="Tambah transaksi"><span class="ms">add</span></a>
+      <a href="javascript:void(0)" data-go="ringkasan"><span class="ms">pie_chart</span>Ringkasan</a>
+      <a href="javascript:void(0)" data-go="pengaturan"><span class="ms">settings</span>Pengaturan</a>
+    </div>
+  </nav>
+
+  <div class="savebar" id="savebar" hidden>
+    <div class="in">
+      <button class="btn primary block" id="saveBtn" type="button"><span class="ms">check_circle</span><span id="saveTxt">Simpan Transaksi</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="modalHost"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
